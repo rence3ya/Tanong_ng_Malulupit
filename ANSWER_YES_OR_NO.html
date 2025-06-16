@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mahal mo pa ba?</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fbd3e9, #bb377d);
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 700px;
+    }
+
+    h1, .top-text {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .btn {
+      background-color: #fff;
+      color: #bb377d;
+      border: none;
+      padding: 15px 35px;
+      margin: 10px;
+      font-size: 1.1em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn:hover {
+      background-color: #f8c1dc;
+      transform: scale(1.05);
+    }
+
+    .video-section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    video {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-btn {
+      background-color: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 10px 25px;
+      font-size: 1em;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #fff;
+      color: #bb377d;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="question-section">
+    <h1>Mahal mo pa ba?</h1>
+    <button class="btn" onclick="showVideo('yes')">Oo</button>
+    <button class="btn" onclick="showVideo('no')">Hindi</button>
+  </div>
+
+  <div class="container video-section" id="yes-section">
+    <div class="top-text">Siya lang talaga.</div>
+    <video id="yes-video" controls preload="auto">
+      <source src="tiktokio.com_HMlKLEerrTsmDkW15HII.mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+
+  <div class="container video-section" id="no-section">
+    <div class="top-text">What if?</div>
+    <video id="no-video" controls preload="auto">
+      <source src="tiktokio.com_K5dkbjkn67J1pxJqVCXB.mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+
+  <script>
+    function showVideo(answer) {
+      document.getElementById('question-section').style.display = 'none';
+
+      if (answer === 'yes') {
+        const section = document.getElementById('yes-section');
+        const video = document.getElementById('yes-video');
+        section.style.display = 'flex';
+        video.currentTime = 0;
+        video.play();
+      } else {
+        const section = document.getElementById('no-section');
+        const video = document.getElementById('no-video');
+        section.style.display = 'flex';
+        video.currentTime = 0;
+        video.play();
+      }
+    }
+
+    function goBack() {
+      document.getElementById('yes-section').style.display = 'none';
+      document.getElementById('no-section').style.display = 'none';
+      document.getElementById('question-section').style.display = 'flex';
+
+      // Pause both videos just in case
+      document.getElementById('yes-video').pause();
+      document.getElementById('no-video').pause();
+    }
+  </script>
+
+</body>
+</html>
